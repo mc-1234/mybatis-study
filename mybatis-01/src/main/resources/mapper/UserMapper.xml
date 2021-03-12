@@ -3,9 +3,27 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--namespace 绑定一个对应dao/Mapper接口-->
-<mapper namespace="com.mc.dao.UserDao">
+<mapper namespace="com.mc.dao.UserMapper">
     <!-- id 对应dao 方法名-->
     <select id="getUserList" resultType="com.mc.pojo.User">
-    select * from mybatis_shine.t_user;
+    select * from mybatis_shine.t_user
   </select>
+    <select id="findUserById" resultType="com.mc.pojo.User" parameterType="int">
+        select * from mybatis_shine.t_user where id=#{id}
+    </select>
+
+
+    <insert id="addUser" parameterType="com.mc.pojo.User" >
+        insert into mybatis_shine.t_user (id,username,password,regist_time)
+        values (#{id},#{username},#{password},#{registTime})
+    </insert>
+    
+    <update id="updateUser" parameterType="com.mc.pojo.User">
+        update mybatis_shine.t_user set username =#{username},password=#{password},regist_time=#{registTime}
+         where id=#{id};
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from mybatis_shine.t_user where id=#{id}
+    </delete>
 </mapper>
