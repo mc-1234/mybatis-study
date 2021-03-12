@@ -16,6 +16,8 @@ public class MybatisUtils {
 
     private static SqlSessionFactory sqlSessionFactory;
 
+
+
     static {
         try {
             // 获取mybatis 配置文件
